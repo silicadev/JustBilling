@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="OnSignupwithUserID(f)" #f="ngForm"> 
+  <div class="form-group">
+    <label for="UserID">UserID</label>
+    <input type="phone" id="phone" name="phone" ngModel class="form-control">
+  </div>
+   <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" ngModel class="form-control">
+  </div>
+  <button class="btn btn-primary" type="submit" id="sign-up-button" name="sign-up-button">Sign Up</button>
+</form> 
+  </div>
+</div>
+
+
+<!-- <div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="OnSignupwithEmail(f)" #f="ngForm"> 
+  <div class="form-group">
+    <label for="email">Mail</label>
+    <input type="email" id="email" name="email" ngModel class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" ngModel class="form-control">
+  </div>
+  <button class="btn btn-primary" type="submit">Sign Up</button>
+</form> 
+  </div>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="OnSignupwithPhone(f)" #f="ngForm"> 
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="phone" id="phone" name="phone" ngModel class="form-control">
+  </div>
+   <div class="form-group">
+    <label for="verifycode">verifycode</label>
+    <input type="OTP" id="OTP" name="OTP" ngModel class="form-control">
+  </div>
+  <button class="btn btn-primary" type="submit" id="sign-up-button" name="sign-up-button">Sign Up</button>
+  <button class="btn btn-primary" type="verify" id="verify" name="verify" (click)="verifyOTP(f)">Verify</button>
+</form> 
+  </div>
+</div> -->
+
+
