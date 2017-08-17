@@ -1,0 +1,106 @@
+
+<div classs="container-fluid">
+<div class="row-fluid">
+   <div class="col-sm-12">
+      <div class="page-header" class= "well well-sm"> 
+        <h1> Create (OR) Edit USER </h1>
+      </div>
+      <div class="btn-group" appDropdown>
+          <button
+              type="button"
+              class="btn btn-primary"> Select USER 
+          </button>
+          <button 
+              type="button"
+              class="btn btn-primary"
+              name="carretbutton" id="carretbutton" > <span class="caret"></span>
+          </button>      
+            <ul class= "dropdown-menu" >
+              <li> 
+                <a
+                  style="cursor: pointer;"
+                  (click)="onEditUser(-1)"> 
+                  {{"New User"}}
+                </a>
+              </li>
+              <li *ngFor="let user of usersList; let i = index">
+                <a
+                  style="cursor: pointer;"
+                  (click)="onEditUser(i)"
+                  *ngIf="user.enable || disabledUserList">
+                  {{user.loginID}}
+                </a> 
+              </li> 
+            </ul>
+      </div>
+
+      <div>
+            <label for="disabledUserList">Show Disabled Users List</label>
+            <input type="checkbox" id="checkbox" name = "disabledUserList" [(ngModel)]="disabledUserList">
+      </div>
+      
+      <div>
+        <label for="loginID">Login ID</label>
+        <input  type="loginID" 
+                id="loginID" 
+                ngModel class= "form-control" 
+                placeholder="Login ID" 
+                name="loginID"
+                [(ngModel)]="loginID" 
+                autocomplete= "off">
+      </div>
+  
+      <div>
+        <label for="password">Password</label>
+        <input  type="password" 
+                id="password" 
+                ngModel class= "form-control input-xxl" 
+                placeholder="Password" 
+                name="password"
+                [(ngModel)]="password"
+                autocomplete= "off">
+      </div>
+
+      <div>
+        <label for="AdminRole">Admin</label>
+        <input type="checkbox" id="checkbox" name = "admin" [(ngModel)]="adminRole">
+      </div>
+
+      <div> 
+        <label for="BillerRole">Biller</label>
+        <input type="checkbox" id="checkbox" name = "Biller" [(ngModel)]="billerRole">
+      </div>
+
+      <div>
+        <label for="Enable">Enable</label>
+        <input type="checkbox" id="checkbox" name = "Enable" [(ngModel)]="enable">
+      </div>
+
+      <div>
+        <button class="btn btn-primary btn-lg btn-block active" type="submit" id="CreateUser" name="CreateUser" *ngIf="!updateuser" (click) = "registerOrUpdateUser()">Create User</button>
+        <button class="btn btn-primary btn-lg btn-block active" type="submit" id="CreateUser" name="CreateUser" *ngIf="updateuser" (click) = "registerOrUpdateUser()">Update User</button>
+      </div>
+      
+      <div class="alert alert-success alert-dismissable" *ngIf="noerroroccurred">
+        <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p>{{successmessage1}}</p>
+      </div>
+
+      <div class="alert alert-warning alert-dismissable fade in" *ngIf="erroroccurred1">
+        <a  class="close" data-dismiss="alert" aria-label="close">&times; </a>
+        {{errorMessage1}}
+      </div>
+
+      <div class="alert alert-warning alert-dismissable fade in" *ngIf="erroroccurred2">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{errorMessage2}}
+      </div>
+      <div class="alert alert-warning alert-dismissable fade in" *ngIf="erroroccurred3">
+        <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p>{{errorMessage3}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+

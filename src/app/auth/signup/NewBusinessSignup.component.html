@@ -1,0 +1,50 @@
+
+ <div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="signupNewBusiness(f)" #f="ngForm">
+
+  <br>
+    <div> 
+      <label for="Business Details">Business Details</label>
+    </div>
+  <br>
+
+  <div class="form-group">
+    <label for="Name">Business Name</label>
+    <input type="name" id="businessname" name="businessname" ngModel class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Mobile Number</label>
+    <input type="phone" id="mobilePhone" name="mobilePhone" ngModel class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email ID</label>
+    <input type="email" id="email" name="email" ngModel class="form-control">
+  </div>
+<br>
+  <div> 
+    <label for="Login Details">Login Details</label>
+  </div>
+<br>
+
+  <div class="form-group">
+    <label for="Business ID">Create your Business ID (used for every login- so make it sweet and short)</label>
+    <input type="name" id="busid" name="busid" ngModel class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="userID">Login ID</label>
+    <input type="userid" id="userid" name="userid" ngModel class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" ngModel class="form-control">
+  </div>
+   
+  <button class="btn btn-primary" type="submit" id="sign-up-button" name="sign-up-button">Sign Up</button>
+</form> 
+  </div>
+</div>

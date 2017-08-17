@@ -1,77 +1,58 @@
+import {Http, Response} from '@angular/http';
+import {Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+
 import * as firebase from 'firebase';
 
+@Injectable()
 export class AuthService {
-    recaptchaVerifier:firebase.auth.RecaptchaVerifier;
-    confirmationResult2:any = "";
+    
+    constructor(private router:Router, private http:Http){}
+    
+    businessID = "";
+    isAuthenticated2 = false;
 
-    reCaptchaVerify(){
-        console.log("recaptcha##1");
-        this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-up-button', 
-        {
-          'size': 'invisible',
-          'callback': function(response) {
-            // reCAPTCHA solved, allow signInWithPhoneNumber.
-            console.log("callback");
-            }
-        
-        });
-        
-        this.recaptchaVerifier.render().then(function() {
-          //window.recaptchaWidgetId = widgetId;
-          //updateSignInButtonUI();
-          console.log("Render##1.1");
-        });
-        
-    return this.recaptchaVerifier;
-}
-  
-    signupUserwithPhone(phone:string, recaptchaVerifier) {
-        console.log("signup-PHONE-1");
-        //const recaptchaVerifier=this.reCaptchaVerify();
-        let self=this;
+signinUserwithLoginID(businessID, loginID, password){
+    let self = this;
+    firebase.database().ref('Business/'+businessID+'/UserInfo/'+loginID).once('value')
+        .then(function(snapshot) {
+                var dblogin = snapshot.val().loginID;
+                var dbPassword = snapshot.val().password;
+                  if((dblogin === loginID) && (password === dbPassword)){
+                      console.log("Login Successful, Welcome:"+loginID);
+                      
+                      self.isAuthenticated2= true;
+                      self.storeValue("businessID", businessID);
+                      self.router.navigate(['/newuser']);
 
-        firebase.auth().signInWithPhoneNumber(phone, recaptchaVerifier)
-            .then(
-                 function (confirmationResult) {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      // user in with confirmationResult.confirm(code).
-                  self.confirmationResult2 = confirmationResult;
-                 console.log(confirmationResult)
-                   
+                  }
+                    else {
+                        console.log("Login FAILED, Sorry:"+loginID);
+                  }
             })
-            .catch(
+        .catch(
                 error => console.log(error)
-            )
-    }
+              )
+}
 
-    verifySMSCode(code:string){
-    this.confirmationResult2.confirm(code).then(function (result) {
-      // User signed in successfully.
-        var user = result.user;
-      // ...
-      console.log("Successful Signin");
+  isAuthenticated(){
+      return this.isAuthenticated2;
+  }
 
-        }).catch(function (error) {
-          // User couldn't sign in (bad verification code?)
-          // ...
-          error => console.log("User could not signin:"+error)
-});
-    }
+storeValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+     } //else {
+    //     document.cookie.(key, value);
+    // }
+}
 
-    signupUserwithEmail(email:string, password:string) {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .catch(
-                error => console.log(error)
-            )
-    }
+getStoredValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } //else {
+    //     return $.cookies.get(key);
+    // }
+}
 
-    signinUser(email:string, password:string) {
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(
-                response => console.log(response)
-            )
-            .catch(
-                error => console.log(error)
-            )
-    }
 }
