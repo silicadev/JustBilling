@@ -14,6 +14,7 @@ import { RegisterNewUserComponent } from './auth/register-new-user/register-new-
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { MasteritemlistComponent } from './items/masteritemlist/masteritemlist.component';
 import { ItemsmappingComponent } from './items/itemsmapping/itemsmapping.component';
+import { ItempricingComponent } from './items/itempricing/itempricing.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ItemsmappingComponent } from './items/itemsmapping/itemsmapping.compone
     DropdownDirective,
     MasteritemlistComponent,
     ItemsmappingComponent,
+    ItempricingComponent,
   ],
   imports: [
     BrowserModule,

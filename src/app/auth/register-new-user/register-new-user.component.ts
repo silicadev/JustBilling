@@ -55,7 +55,6 @@ export class RegisterNewUserComponent implements OnInit {
                     var childData = childSnapshot.val();
                     self.usersList.push(childData);
                 });
-
                 })
             .catch(
                     error => console.log(error)

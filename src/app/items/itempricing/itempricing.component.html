@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+     <div class="col-sm-12">
+        <div class="page-header" class= "well well-sm"> 
+          <!-- <h1> Add Pricing </h1> -->
+        </div>
+        <div class="btn-group" appDropdown>
+            <button
+                type="button"
+                class="btn btn-primary"> Select Price Type 
+            </button>
+            <button 
+                type="button"
+                class="btn btn-primary"
+                name="carretbutton" id="carretbutton" > <span class="caret"></span>
+            </button>      
+              <ul class= "dropdown-menu" >
+                <li> 
+                  <a
+                    style="cursor: pointer;"
+                    (click)="onEditPriceType(-1)">
+                  </a>
+                  <input  type="NewPriceType" 
+                  id="NewPriceType" 
+                  ngModel class= "form-control" 
+                  placeholder="NewPriceType" 
+                  name="NewPriceType"
+                  [(ngModel)]="newPriceType"
+                  autocomplete= "off">
+
+                </li>
+                <li *ngFor="let pricetype of pricetypes; let i = index">
+                  <a
+                    style="cursor: pointer;"
+                    (click)="onEditPriceType(i)"
+                    *ngIf="user.enable || disabledPriceTypes">
+                    {{user.loginID}}
+                  </a> 
+                </li> 
+              </ul>
+        </div>
+  
+        <div>
+              <label for="disabledPriceTypes">Show Disabled Price Types</label>
+              <input type="checkbox" id="checkbox" name = "disabledUserList" [(ngModel)]="disabledPriceTypes">
+        </div>

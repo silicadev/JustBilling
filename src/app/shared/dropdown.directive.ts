@@ -16,16 +16,15 @@ export class DropdownDirective {
               //   this.text = "clicked inside";
               //   this.isOpen = !this.isOpen;
               // }
+
               if(this.eRef.nativeElement.contains(event.target)) {
 
                 if((event.target as Element).id == "carretbutton"){
 
                   this.isOpen = !this.isOpen;
                 } else {
-
                     if( this.isOpen){ this.isOpen = false};
                 }
-                if( this.isOpen){ this.isOpen = false};
               }
   }
 
