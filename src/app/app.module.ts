@@ -12,6 +12,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthService} from './auth/auth.service';
 import { RegisterNewUserComponent } from './auth/register-new-user/register-new-user.component';
 import { DropdownDirective } from "./shared/dropdown.directive";
+import { MasteritemlistComponent } from './items/masteritemlist/masteritemlist.component';
+import { ItemsmappingComponent } from './items/itemsmapping/itemsmapping.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { DropdownDirective } from "./shared/dropdown.directive";
     NewBusinessSignupComponent,
     SigninComponent,
     RegisterNewUserComponent,
-    DropdownDirective
+    DropdownDirective,
+    MasteritemlistComponent,
+    ItemsmappingComponent,
   ],
   imports: [
     BrowserModule,

@@ -36,6 +36,7 @@ export class RegisterNewUserComponent implements OnInit {
     erroroccurred2:boolean=false;
     erroroccurred3:boolean=false;
     disabledUserList:boolean = false;
+    prevloginID = "";
 
     noerroroccurred:boolean=false;
     successmessage1:string = "";
@@ -63,6 +64,7 @@ export class RegisterNewUserComponent implements OnInit {
 
   registerOrUpdateUser(){
     let self = this;
+    console.log("New User")
     const businessID= this.authservice.getStoredValue("businessID");
     
     this.resetErrorFlags();
@@ -80,7 +82,8 @@ export class RegisterNewUserComponent implements OnInit {
 
     if ((businessID != "" && this.loginID != "" && this.password!="")
           && (this.adminRole!=false || this.billerRole!=false)) { 
-                  const database= firebase.database().ref('Business/'+businessID+'/UserInfo/'+self.loginID).set(loginInfo)
+                  const database= firebase.database().ref('Business/'+businessID+'/UserInfo/'+self.loginID)
+                        .set(loginInfo)
                           .then(
                             ()=>{
                               self.noerroroccurred=true;
@@ -90,6 +93,10 @@ export class RegisterNewUserComponent implements OnInit {
                               self.loginID="";
                               self.password ="";
                               self.resetErrorFlags();
+
+                              if(self.prevloginID != "" && self.prevloginID != self.loginID){
+                              firebase.database().ref('Business/'+businessID+'/UserInfo/'+self.prevloginID)
+                              .remove();}
                             }
                           )
                           .catch(
@@ -116,10 +123,10 @@ export class RegisterNewUserComponent implements OnInit {
                         }
 
   }
-
   onEditUser(index){
     if (index != "-1"){
         this.updateuser= true;
+        this.prevloginID = this.usersList[index].loginID;
         this.loginID= this.usersList[index].loginID;
         this.password = this.usersList[index].password;
         this.adminRole = this.usersList[index].adminRole;
@@ -128,6 +135,7 @@ export class RegisterNewUserComponent implements OnInit {
       }
       else{
         this.updateuser= false;
+        this.prevloginID = "";
         this.loginID="";
         this.password ="";
         this.adminRole = false;
@@ -144,8 +152,5 @@ export class RegisterNewUserComponent implements OnInit {
     this.errorMessage3=null;
     this.errorMessage2="";
     this.errorMessage1="";
-  }
-  showDisabledUsers(){
-    
   }
 }

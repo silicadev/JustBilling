@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-sm-12">
+      <div class="page-header" class= "well well-sm"> 
+        <h1> Create OR EDIT Items </h1>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>Master Categories</div>
+        <div>
+          <textarea name="matercategories" id="matercategories" cols="30" rows="10" [(ngModel)]="mastercategoriesList"></textarea>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>Master Sub Categories</div>
+        <div>
+          <textarea name="mastersubcategories" id="mastersubcategories" cols="30" rows="10" [(ngModel)]="mastersubcategoriesList"></textarea>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div>Master Items List</div>
+          <div>
+            <textarea name="masteritemslist" id="masteritemslist" cols="30" rows="10" [(ngModel)]="masterItemsList"></textarea>
+          </div>
+    </div>
+      <button type="button" 
+              class="btn btn-primary"
+              name="masteritemsbutton" id="masteritemsbutton" (click)="storeMasterItemsinDB()">Submit
+      </button>
+  </div>
+</div>

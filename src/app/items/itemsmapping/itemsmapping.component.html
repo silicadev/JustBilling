@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class = "row-fluid">
+    <div class="col-sm-12">
+      <div class= "page-header">
+        <h1>Map Items with Categories and sub categories</h1>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <fieldset>
+        <legend>Categories</legend>
+          <div *ngFor="let category of mastercategoriesList; let i=index">
+            <input type="radio" id="category" name="category" (click)="onClickItemMapping('category',i)" 
+                  [checked]="catradioselection[i]">
+            <label for="category">{{category}}</label>
+          </div>
+      </fieldset>
+    </div>
+
+    <div class="col-sm-4" >
+      <fieldset>
+        <legend>Sub Categories</legend>
+            <div *ngFor="let subcategory of mastersubcategoriesList; let i=index">
+              <div *ngIf ="subcat_disable_status[i]">
+                <input  type="radio" id="subcategory" name="subcategory" [checked]="subcatradioselection[i]"
+                (click)="onClickItemMapping('subcategory',i)"  disabled>
+                <label for="subcategory">{{subcategory}}</label>
+              </div>
+
+              <div *ngIf ="!subcat_disable_status[i]">
+                <input type="radio" id="subcategory" name="subcategory" [checked]="subcatradioselection[i]" 
+                (click)="onClickItemMapping('subcategory',i)">
+                <label for="subcategory">{{subcategory}}</label>
+              </div>
+            </div>
+      </fieldset>
+    </div>
+
+    <div class="col-sm-4">
+      <fieldset>
+        <legend>Items</legend> 
+            <div *ngFor="let item of masterItemsList; let i=index">
+              <input *ngIf="item_disable_status[i]" type="checkbox" [checked]="itemcheckboxselection[i]" 
+                  id="item" name="item" (click)="onClickItemMapping('items',i)" disabled>
+              <input *ngIf="!item_disable_status[i]" type="checkbox" [checked]="itemcheckboxselection[i]" 
+                  id="item" name="item" (click)="onClickItemMapping('items',i)">
+              <label for="item">{{item}}</label>
+            </div>
+      </fieldset>
+    </div>
+
+    <button (click)="onAddItemsMapping()" *ngIf="selectedItems.length==0" disabled>ADD</button>
+    <button (click)="onAddItemsMapping()" *ngIf="selectedItems.length!=0" >ADD</button>
+
+    <label for="">{{selectedItems.length}}</label>
+
+    <legend>Mapped Items Review</legend>
+      <div *ngFor="let mappedString of itemMappedStringsJson; let i=index">
+        
+        <p (click)="onClickMappedString(i)">
+            {{mappedString.Category}}-->{{mappedString.Subcategory}}-->{{mappedString.Items}}
+        </p>
+        <button (click)="removeMappedString(i)">X</button>
+    </div>
+    <div><button (click)="saveItemsMappingstoDB()">Submit</button></div>
+  </div>
+</div>
